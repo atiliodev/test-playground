@@ -13,9 +13,7 @@ public class CameraSystem : MonoBehaviour
     public BikesControlerSystem bikesControler;
 
     public int currentCameraIndex = 0;
-    public bool 
-        
-        ;
+    
     private int currentCinemachineIndex = 0;
 
     private FreestyleSystem fSystem;
