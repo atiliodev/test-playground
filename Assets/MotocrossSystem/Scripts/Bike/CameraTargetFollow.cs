@@ -21,12 +21,7 @@ public class CameraTargetFollow : MonoBehaviour
         }
 
 
-        if(bikesControler.bikeController.
-            
-            
-            
-            
-            ed && ragdoll != null)
+        if(bikesControler.bikeController.crashed && ragdoll != null)
         {
             bikeTransform = ragdoll.transform;
         }

@@ -43,18 +43,7 @@ public class ResetSystem : MonoBehaviour
     }
     void PlayerResetSystem()
     {
-        if (freestyleSystemBs.bikeAnim != null && freestyleSystemBs.bkController.
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            ed && !wait)
+        if (freestyleSystemBs.bikeAnim != null && freestyleSystemBs.bkController.crashed && !wait)
         {
             
             StartCoroutine("WaitAnother");

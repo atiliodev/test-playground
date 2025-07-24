@@ -67,10 +67,7 @@ public class CameraSystem : MonoBehaviour
         {
             for (int i = 0; i < cameras.Length; i++)
             {
-                if (!bController.
-                    
-                    
-                    ed)
+                if (!bController.crashed)
                 {
                     if (currentCameraIndex == i)
                     {
@@ -84,7 +81,6 @@ public class CameraSystem : MonoBehaviour
                 }
                 else
                 {
-
                     if (cameras.Length - 1 == i)
                     {
                         cameras[cameras.Length - 1].gameObject.SetActive(true);
