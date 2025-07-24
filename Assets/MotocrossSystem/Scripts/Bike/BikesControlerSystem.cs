@@ -52,11 +52,9 @@ public class BikesControlerSystem : MonoBehaviour
         if (ResetSystem.resetPlayer && !wait)
         {
             Destroy(atualBike, 0.2f);
-            GameObject newObj = Instantiate(playBike, parentObject);
-            newObj.transform.SetPositionAndRotation(
-                healthSystem?.die == true ? initialPos : resetSystem.atualPlace,
-                healthSystem?.die == true ? initialQuat : resetSystem.atualRot
-            );
+            GameObject newObj = Instantiate(playBike, resetSystem.atualPlace, resetSystem.atualRot, parentObject);
+            
+          
             StartCoroutine(InitializeBike());
             wait = true;
         }

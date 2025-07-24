@@ -35,7 +35,7 @@ public class DiePanel : MonoBehaviour
 
         if (ResetSystem.resetPlayer)
         {
-            player.position = healthSystem.initPos;
+           // player.position = healthSystem.initPos;
            // player.rotation = healthSystem.initQuat;
            if(healthSystem.currentHealth <= 0.5f)
            {

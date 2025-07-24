@@ -27,7 +27,15 @@ public class keyboardControls : MonoBehaviour {
 		}
 
 		//////////////////////////////////// STEERING /////////////////////////////////////////////////////////////////////////
-		if (bikes.bikeController.crashed)
+		if (bikes.bikeController.
+			
+			
+			
+			
+			
+			
+			
+			ed)
 		{
 			outsideControls.Horizontal = Mathf.Lerp(0, -1, 3 * Time.deltaTime);
 		}

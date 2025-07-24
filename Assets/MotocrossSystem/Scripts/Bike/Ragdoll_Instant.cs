@@ -17,7 +17,12 @@ public class Ragdoll_Instant : MonoBehaviour
 
     void Update()
     {
-        if (bikeLink.crashed && !done)
+        if (bikeLink.
+            
+            
+            
+            
+            ed && !done)
         {
             bikeLink.normalCoM = 0;
             bikeLink.m_body.mass = 100;
@@ -25,7 +30,8 @@ public class Ragdoll_Instant : MonoBehaviour
             set.SetActive(false);
             done = true;
         }
-        else if (!bikeLink.crashed && done)
+        else if (!bikeLink.
+            ed && done)
         {
             RagdollDriver.DestroRagdoll();
             done = false;

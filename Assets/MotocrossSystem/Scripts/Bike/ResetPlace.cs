@@ -16,8 +16,10 @@ public class ResetPlace : MonoBehaviour
     public Quaternion atualRot;
     public int atualPs;
 
+    public static Vector3 placeToReset;
     void Update()
     {
+        placeToReset = atualPlace;
         if (player == null && bikesControler.atualBike != null)
         {
             player = bikesControler.atualBike.transform;

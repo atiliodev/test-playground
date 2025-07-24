@@ -13,7 +13,9 @@ public class CameraSystem : MonoBehaviour
     public BikesControlerSystem bikesControler;
 
     public int currentCameraIndex = 0;
-    public bool crash;
+    public bool 
+        
+        ;
     private int currentCinemachineIndex = 0;
 
     private FreestyleSystem fSystem;
@@ -25,7 +27,7 @@ public class CameraSystem : MonoBehaviour
     {
         bController = GameObject.FindGameObjectWithTag("Player").GetComponent<BikeController>();
         fSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<FreestyleSystem>();
-        rider = GameObject.FindGameObjectWithTag("Rider");
+       // rider = GameObject.FindGameObjectWithTag("Rider");
         // Inicializa a primeira câmera e desativa as outras
         for (int i = 1; i < cameras.Length; i++)
         {
@@ -67,7 +69,10 @@ public class CameraSystem : MonoBehaviour
         {
             for (int i = 0; i < cameras.Length; i++)
             {
-                if (!bController.crashed)
+                if (!bController.
+                    
+                    
+                    ed)
                 {
                     if (currentCameraIndex == i)
                     {

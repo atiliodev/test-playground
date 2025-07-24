@@ -15,16 +15,18 @@ public class AutoCamFlip : MonoBehaviour
         camComponent = GetComponent<CinemachineFollow>();
         bikeRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
     }
-
+    bool isFlipped;
     private void Update()
     {
-        bool isFlipped = Vector3.Dot(bikeRb.linearVelocity, target.forward) < minToFlip;
 
         if(bikeRb == null)
         {
-            bikeRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+            bikeRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();        
         }
-
+        else
+        {
+            isFlipped = Vector3.Dot(bikeRb.linearVelocity, target.forward) < minToFlip;
+        }
         if (camComponent != null)
         {
             camComponent.FollowOffset = Vector3.Lerp(camComponent.FollowOffset, isFlipped ? frontOffset : rearOffset, Time.deltaTime * 5);

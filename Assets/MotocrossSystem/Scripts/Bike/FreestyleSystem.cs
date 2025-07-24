@@ -932,6 +932,8 @@ public class FreestyleSystem : MonoBehaviour
         return true;
     }
 
+
+
     private void ResetFreestyle()
     {
         pauseValue = 1;
@@ -971,7 +973,13 @@ public class FreestyleSystem : MonoBehaviour
         if(triggersSense.haveToCrash)
         {
             animatioFall = true;
-            bkController.crashed = true;
+          //  bkController.
+          //
+          //
+          //
+          //
+          //
+          //  ed = true;
         }
 
 
@@ -1003,17 +1011,16 @@ public class FreestyleSystem : MonoBehaviour
     if (currentRotationY > 180) currentRotationY = 360 - currentRotationY;
     if (currentVerticalTilt > 180) currentVerticalTilt = 360 - currentVerticalTilt;
 
-        c1 = collisionForce >= impactThreshold || onFreeStyle;
+        c1 = collisionForce >= impactThreshold;
         c2 = !collider is CapsuleCollider;
         c3 = isGround && (currentTiltX > maxTiltAngle || currentTiltZ > maxTiltAngle || currentRotationY > maxRotationAngle || currentVerticalTilt > maxVerticalTilt);
     // Verifica se a moto aterrissou com inclinação, rotação ou pitch excessivo
-    if (c1 || c3)
+   /* if (c1 || (c3 && onFreeStyle))
     {
-        animatioFall = true;
-        bkController.crashed = true;
-        isImpactAboveThreshold = true;
-            Debug.Log("Here Collision");
-    }
+        //animatioFall = true;
+        //bkController.crashed = true;
+        //isImpactAboveThreshold = true;
+    }*/
 }
     public bool c1;
     public bool c2;

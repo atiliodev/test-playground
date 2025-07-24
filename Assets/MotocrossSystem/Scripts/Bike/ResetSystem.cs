@@ -13,9 +13,10 @@ public class ResetSystem : MonoBehaviour
     public float timeWait = 2f;
     public float factoryIncreaseValue = 2;
     public TextMeshProUGUI timeText;
+    public bool show;
     void Update()
     {
-
+        show = resetPlayer;
 
         if (freestyleSystemBs == null)
         {
@@ -42,7 +43,18 @@ public class ResetSystem : MonoBehaviour
     }
     void PlayerResetSystem()
     {
-        if (freestyleSystemBs.bikeAnim != null && freestyleSystemBs.bkController.crashed && !wait)
+        if (freestyleSystemBs.bikeAnim != null && freestyleSystemBs.bkController.
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            ed && !wait)
         {
             
             StartCoroutine("WaitAnother");

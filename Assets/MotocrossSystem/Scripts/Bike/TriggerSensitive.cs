@@ -121,7 +121,10 @@ public class TriggerSensitive : MonoBehaviour
                         if(backJump && bike.bikeSpeed > 10)
                         {
                             Debug.Log("Air");
-                            haveToCrash = true;
+                            //haveTo
+                            //
+                            //
+                            //= true;
                         }
                     }
                 
@@ -141,7 +144,7 @@ public class TriggerSensitive : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, raycastDistance, collisionLayers) && bike.bikeSpeed > 15)
                 {
                     Debug.Log("Head");
-                    haveToCrash = true;
+                   // haveToCrash = true;
                 }
             
                 Debug.DrawRay(origin.position, direction2 * raycastDistance, Color.green);
