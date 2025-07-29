@@ -3514,7 +3514,6 @@ MonoBehaviour:
   - {fileID: 1659398703}
   bikesControler: {fileID: 2203654953113480281}
   currentCameraIndex: 0
-  crash: 0
 --- !u!1 &2203654954419046259
 GameObject:
   m_ObjectHideFlags: 0
