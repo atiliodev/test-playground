@@ -24,10 +24,10 @@ public class BikeController : MonoBehaviour{
     // crashed status. To know when we need to desable controls because bike is too leaned.
     public bool crashed = false;
     // there is angles when bike takes status crashed(too much lean, or too much stoppie/wheelie)
-    public float crashAngle01;//crashed status is on if bike have more Z(side fall) angle than this												// 70 sport, 55 chopper
-    public float crashAngle02;//crashed status is on if bike have less Z(side fall) angle than this 												// 290 sport, 305 chopper
-    public float crashAngle03;//crashed status is on if bike have more X(front fall) angle than this 												// 70 sport, 70 chopper
-    public float crashAngle04;//crashed status is on if bike have more X(back fall) angle than this												// 280 sport, 70 chopper
+    //public float crashAngle01;//crashed status is on if bike have more Z(side fall) angle than this												// 70 sport, 55 chopper
+    //public float crashAngle02;//crashed status is on if bike have less Z(side fall) angle than this 												// 290 sport, 305 chopper
+   // public float crashAngle03;//crashed status is on if bike have more X(front fall) angle than this 												// 70 sport, 70 chopper
+    //public float crashAngle04;//crashed status is on if bike have more X(back fall) angle than this												// 280 sport, 70 chopper
     											
     // define CoM of bike
     public Transform CoM; //CoM object
@@ -754,7 +754,7 @@ if (!crashed && outsideControls.Horizontal != 0f)
     		
     		
     ///////////////////////////////////////// CRASH happens /////////////////////////////////////////////////////////
-if(freestyleSys.isGround)
+/*if(freestyleSys.isGround)
 {
     if ((this.transform.localEulerAngles.z >= crashAngle01 && this.transform.localEulerAngles.z <= crashAngle02) ||
         (this.transform.localEulerAngles.x >= crashAngle03 && this.transform.localEulerAngles.x <= crashAngle04))
@@ -772,7 +772,7 @@ if(freestyleSys.isGround)
 
         m_body.centerOfMass = new Vector3(CoM.localPosition.x, CoM.localPosition.y, CoM.localPosition.z);
     }
-}
+}*/
     	
     	if(crashed){
           coll_rearWheel.motorTorque = 0.0f;
