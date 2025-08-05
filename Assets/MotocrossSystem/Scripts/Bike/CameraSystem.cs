@@ -45,11 +45,11 @@ public class CameraSystem : MonoBehaviour
             bController = GameObject.FindGameObjectWithTag("Player").GetComponent<BikeController>();
         }
 
-       /* if (cameras[4] == null && bikesControler.AtualFirstCam != null)
+        if (cameras[1] == null && bikesControler.AtualFirstCam != null)
         {
-          //  cameras[4] = bikesControler.AtualFirstCam.camera;
+            cameras[1] = bikesControler.AtualFirstCam.gameObject;
         }
-       */
+       
 
         // Verifica se o jogador pressiona a tecla 'G' para alternar entre as câmeras normais
         if (Input.GetKeyDown(KeyCode.G))
