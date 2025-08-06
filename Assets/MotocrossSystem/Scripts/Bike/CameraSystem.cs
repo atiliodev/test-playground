@@ -52,7 +52,7 @@ public class CameraSystem : MonoBehaviour
        
 
         // Verifica se o jogador pressiona a tecla 'G' para alternar entre as câmeras normais
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             if (currentCameraIndex >= cameras.Length - 1)
             {
