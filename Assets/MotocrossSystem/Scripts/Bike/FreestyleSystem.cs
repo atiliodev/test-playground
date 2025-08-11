@@ -311,6 +311,15 @@ public class FreestyleSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(isGround && onFreeStyle && !waitData)
+        {
+            animatioFall = true;
+            bkController.crashed = true;
+            isImpactAboveThreshold = true;
+            Debug.Log("From Here123");
+            StartCoroutine(restCond());
+            waitData = true;
+        }
         if (!isGround)
         {
             RotateBike();
@@ -353,6 +362,12 @@ public class FreestyleSystem : MonoBehaviour
             catchValue = false;
             //Debug.Log("Condição não atendida.");
         }
+    }
+    bool waitData;
+    IEnumerator restCond()
+    {
+        yield return new WaitForSeconds(3);
+        waitData = false;
     }
 
     void DoAction()
@@ -1015,7 +1030,7 @@ public class FreestyleSystem : MonoBehaviour
         c2 = !collider is CapsuleCollider;
         c3 = !isGround && (currentTiltX > maxTiltAngle || currentTiltZ > maxTiltAngle || currentRotationY > maxRotationAngle || currentVerticalTilt > maxVerticalTilt);
     // Verifica se a moto aterrissou com inclinação, rotação ou pitch excessivo
-     if (c1 || (c3 && onFreeStyle) || onFreeStyle)
+     if (c1 || (c3 && onFreeStyle) || (onFreeStyle && isGround))
     {
         animatioFall = true;
         bkController.crashed = true;

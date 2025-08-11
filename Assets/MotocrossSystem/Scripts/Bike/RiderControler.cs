@@ -80,9 +80,10 @@ void AtualizarReferencias(GameObject novaBike)
     }
 
     Vector3 currentOffset;
-
+    public float set23;
     void Update()
 {
+       
     AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
     if (this == null || transform == null || !gameObject.activeInHierarchy) return;
     currentOffset = initialOffset - offsetFixer;
@@ -200,8 +201,9 @@ if (!gearControl.OnN)
 }
 else
 {
-    if (VInput > 0)
+    if (VInput > 0 || bike.linearVelocity.magnitude * 100 > 0)
     {
+
         anim.SetFloat("VInput", 1);
     }
     else
@@ -209,7 +211,17 @@ else
         anim.SetFloat("VInput", 0);
     }
 }
-anim.SetFloat("HInput", HInput);
+
+    if (bike.linearVelocity.magnitude > 0.5f )
+    {
+        anim.SetFloat("VInput", 1);
+    }
+    else
+    {
+        anim.SetFloat("VInput", 0);
+    }
+
+        anim.SetFloat("HInput", HInput);
 anim.SetBool("Stopped", IsStopped());
 anim.SetBool("OnAir", !systemFreestyle.isGround);
 anim.SetBool("onReverse", bikeSystem.isReverseOn);
@@ -311,12 +323,8 @@ float targetPitchLean = Mathf.Clamp(-bikePitch * 0.2f, -5f, 5f);
 Quaternion targetLeanRot = Quaternion.Euler(targetPitchLean, 0f, targetCounterLean);
 
 // Aplica suavemente em proceduralLeanTarget
-proceduralLeanTarget.localRotation = Quaternion.Slerp(
-    proceduralLeanTarget.localRotation,
-    targetLeanRot,
-    Time.deltaTime * 3f
-);
-
+//proceduralLeanTarget.localRotation = Quaternion.Slerp(proceduralLeanTarget.localRotation, targetLeanRot, Time.deltaTime * 3f);
+        
 // --- Input do jogador + micro noise + força G lateral ---
 // Input
 float h = Input.GetAxis("Horizontal");

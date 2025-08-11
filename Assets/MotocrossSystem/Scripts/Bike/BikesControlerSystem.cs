@@ -53,7 +53,8 @@ public class BikesControlerSystem : MonoBehaviour
         {
             Destroy(atualBike, 0.2f);
             GameObject newObj = Instantiate(playBike, resetSystem.atualPlace, resetSystem.atualRot, parentObject);
-            
+
+            newObj.transform.position = resetSystem.atualPlace;
           
             StartCoroutine(InitializeBike());
             wait = true;
