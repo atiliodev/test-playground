@@ -1030,7 +1030,7 @@ public class FreestyleSystem : MonoBehaviour
         c2 = !collider is CapsuleCollider;
         c3 = !isGround && (currentTiltX > maxTiltAngle || currentTiltZ > maxTiltAngle || currentRotationY > maxRotationAngle || currentVerticalTilt > maxVerticalTilt);
     // Verifica se a moto aterrissou com inclinação, rotação ou pitch excessivo
-     if (c1 || (c3 && onFreeStyle) || (onFreeStyle && isGround))
+     if (c1 || (c3 && onFreeStyle) || (onFreeStyle && isGround && c1))
     {
         animatioFall = true;
         bkController.crashed = true;
