@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
     public BikesControlerSystem bikesControler;
-    //public Slider healthBar;
+    public Slider healthBar;
     public float maxFallDamage = 30f;
     public float fallDamageMultiplier = 0.1f;
     public float impactDamageMultiplier = 0.1f;
@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         if (PlayerPrefs.HasKey("health"))
         {
             currentHealth = PlayerPrefs.GetFloat("health");
-        } 
+        }
         else
         {
             currentHealth = maxHealth;
@@ -52,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if ((bikeSystem == null || bikesControler == null /*||healthBar == null*/) && !waitSet)
+        if ((bikeSystem == null || bikesControler == null || healthBar == null) && !waitSet)
         {
             StartCoroutine("CheckApply");
 
@@ -66,38 +66,38 @@ public class PlayerHealth : MonoBehaviour
 
         DiePanel.SetActive(die);
 
-        if (bikeSystem.crashed && !getDamage)
+        if ((bikeSystem.crashed || GetComponent<FreestyleSystem>().isImpactAboveThreshold && !getDamage))
         {
             DamageHealth();
             getDamage = true;
         }
-        else if (getDamage && !bikeSystem.crashed)
+        else if (getDamage && !(bikeSystem.crashed || GetComponent<FreestyleSystem>().isImpactAboveThreshold && !getDamage))
         {
             getDamage = false;
         }
 
-       if (currentHealth <= 0)
-{
-    currentHealth = 0;
-    die = true;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            die = true;
 
-    // ✅ DESATIVA OS SCRIPTS ANTIGOS DA MOTO
-    if (bikeSystem != null)
-    {
-        RiderControler rider = bikeSystem.GetComponentInChildren<RiderControler>();
-        if (rider != null)
-            rider.enabled = false;
+            // ✅ DESATIVA OS SCRIPTS ANTIGOS DA MOTO
+            if (bikeSystem != null)
+            {
+                RiderControler rider = bikeSystem.GetComponentInChildren<RiderControler>();
+                if (rider != null)
+                    rider.enabled = false;
 
-        BikeController controller = bikeSystem.GetComponent<BikeController>();
-        if (controller != null)
-            controller.enabled = false;
-    }
-}
-else
-{
-    die = false;
-}
-      //  healthBar.value = currentHealth;
+                BikeController controller = bikeSystem.GetComponent<BikeController>();
+                if (controller != null)
+                    controller.enabled = false;
+            }
+        }
+        else
+        {
+            die = false;
+        }
+        healthBar.value = currentHealth;
     }
 
     IEnumerator CheckApply()
@@ -112,7 +112,7 @@ else
             }
         }
         bikesControler = atualObj.GetComponent<BikesControlerSystem>();
-       // healthBar = bikesControler.slider;
+        healthBar = bikesControler.slider;
         DiePanel = bikesControler.diePanel;
         waitSet = false;
         yield return new WaitForSeconds(2);
@@ -138,14 +138,14 @@ else
     void OnCollisionEnter(Collision collision)
     {
 
-        Vector3 relativeVelocity = collision.relativeVelocity;
-        float impactForce = relativeVelocity.magnitude;
+        //Vector3 relativeVelocity = collision.relativeVelocity;
+        // float impactForce = relativeVelocity.magnitude;
 
 
-        float collisionForce = collision.impulse.magnitude;
+        //float collisionForce = collision.impulse.magnitude;
 
-        fallDamageMultiplier = collisionForce / 12;
-
+        //fallDamageMultiplier = collisionForce / 12;
+        /*
         if (collisionForce >= 15)
         {
             impactDamageMultiplier = 0.53f * impactForce / 6;
@@ -163,6 +163,6 @@ else
         else
         {
            /// PlayerPrefs.DeleteKey("health");
-        }
+        }*/
     }
 }

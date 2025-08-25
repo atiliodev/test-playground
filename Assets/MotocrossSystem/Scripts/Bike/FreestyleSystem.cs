@@ -34,17 +34,17 @@ public class FreestyleSystem : MonoBehaviour
     public BikeController bkController;
     public Animator anim;
     public RiderControler animCs;
-  //  public Animator animBike;
+    //  public Animator animBike;
     public GameObject bikeAnim;
     public GameObject bikeTrans;
     public GameObject rider;
-///public GameObject animRider;
+    ///public GameObject animRider;
 
     private Rigidbody rb;
     private Vector3 initialCenterOfMass;
     public MeshRenderer[] mesh;
     public SkinnedMeshRenderer[] meshRider;
-    
+
     public bool isGround;
     [Space(20)]
     public List<BikeAirMove> airMoves = new List<BikeAirMove>();
@@ -266,7 +266,7 @@ public class FreestyleSystem : MonoBehaviour
         AnimSystem();
         DoAction();
         TriggerControl();
-        
+
 
 
 
@@ -292,18 +292,18 @@ public class FreestyleSystem : MonoBehaviour
         bool cond1 = airMoves[IndexMove].start.x > 0 || airMoves[IndexMove].start.y > 0 || airMoves[IndexMove].start.z > 0;
         bool cond2 = airMoves[IndexMove].end.x > 0 || airMoves[IndexMove].end.y > 0 || airMoves[IndexMove].end.z > 0;
 
-       
+
 
         if (IndexMove >= 0)
         {
-            
+
             if (!doneIT && ((cond1) || (cond2)) && airMoves[IndexMove].time > 0)
             {
                 StartCoroutine(operateMove(IndexMove, airMoves[IndexMove].start, airMoves[IndexMove].end, airMoves[IndexMove].time));
                 doneIT = true;
             }
         }
-        
+
     }
 
     public float fatorShow1;
@@ -311,14 +311,14 @@ public class FreestyleSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isGround && onFreeStyle && !waitData)
+        if (isGround && onFreeStyle && !waitData)
         {
-            animatioFall = true;
-            bkController.crashed = true;
-            isImpactAboveThreshold = true;
-            Debug.Log("From Here123");
-            StartCoroutine(restCond());
-            waitData = true;
+            // animatioFall = true;
+            //bkController.crashed = true;
+            // isImpactAboveThreshold = true;
+            // Debug.Log("From Here123");
+            //StartCoroutine(restCond());
+            //waitData = true;
         }
         if (!isGround)
         {
@@ -411,7 +411,7 @@ public class FreestyleSystem : MonoBehaviour
 
         rider.SetActive(!bkController.crashed);
 
-//animRider.SetActive(!bkController.crashed);
+        //animRider.SetActive(!bkController.crashed);
     }
 
     IEnumerator Inicialize()
@@ -772,24 +772,24 @@ public class FreestyleSystem : MonoBehaviour
             StartCoroutine("turnOff");
         }
 
-       // bikeAnim.SetActive(onFreeStyle);
+        // bikeAnim.SetActive(onFreeStyle);
         anim.speed = pauseValue;
 
         if (onFreeStyle)
         {
-           // rb.MoveRotation(bikeAnim.transform.rotation);
+            // rb.MoveRotation(bikeAnim.transform.rotation);
         }
 
-       /* foreach (var meshItem in mesh)
-        {
-            meshItem.enabled = !onFreeStyle;
-        }
-        foreach (var riderMesh in meshRider)
-        {
-            riderMesh.enabled = !onFreeStyle;
-        }*/
+        /* foreach (var meshItem in mesh)
+         {
+             meshItem.enabled = !onFreeStyle;
+         }
+         foreach (var riderMesh in meshRider)
+         {
+             riderMesh.enabled = !onFreeStyle;
+         }*/
 
-        
+
 
         if (!isGround)
         {
@@ -798,7 +798,7 @@ public class FreestyleSystem : MonoBehaviour
         }
         else
         {
-            if(waitFall)
+            if (waitFall)
             {
                 StartCoroutine(FallMove());
                 waitFall = false;
@@ -835,8 +835,8 @@ public class FreestyleSystem : MonoBehaviour
                     bool conditional1 = (Input.GetKey(listOfCentralCommands[listOfMatchCommands[k].x]) && Input.GetKey(listOfCentralCommands[listOfMatchCommands[k].y]));
                     bool conditional2 = (Input.GetKey(listOfCentralCommands[listOfMatchCommands[k].y]) && Input.GetKey(listOfCentralCommands[listOfMatchCommands[k].x]));
                     bool isBlockedConditional2 = blockedFreestyles[i * 4 + (j + 1)];
-                    
-                   
+
+
 
                     if ((conditional1 || conditional2) && Input.GetKey(listOfDerivativeCommands[j]) && !blockedFreestyles[(k * 4 + (j + 1)) + 16])
                     {
@@ -876,7 +876,7 @@ public class FreestyleSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0);
         transform.Rotate(start * 2 * Time.deltaTime);
-        if(start.x == 1)
+        if (start.x == 1)
         {
             inputKeyX = true;
         }
@@ -985,62 +985,62 @@ public class FreestyleSystem : MonoBehaviour
 
     void TriggerControl()
     {
-        if(triggersSense.haveToCrash)
+        if (triggersSense.haveToCrash)
         {
             animatioFall = true;
-          //  bkController.
-          //
-          //
-          //
-          //
-          //
-          //  ed = true;
+            //  bkController.
+            //
+            //
+            //
+            //
+            //
+            //  ed = true;
         }
 
 
 
 
-        if(bkController.crashed)
+        if (bkController.crashed)
         {
             triggersSense.ResteAll();
         }
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
-    Vector3 relativeVelocity = collision.relativeVelocity;
-    float impactForce = relativeVelocity.magnitude;
-    float collisionForce = collision.impulse.magnitude / (impactForce * 3);
-    Collider collider = collision.collider;
+        Vector3 relativeVelocity = collision.relativeVelocity;
+        float impactForce = relativeVelocity.magnitude;
+        float collisionForce = collision.impulse.magnitude / (impactForce * 3);
+        Collider collider = collision.collider;
 
-    // Obtém os ângulos atuais de inclinação e rotação
-    float currentTiltX = Mathf.Abs(transform.eulerAngles.x); // Inclinação lateral (X)
-    float currentTiltZ = Mathf.Abs(transform.eulerAngles.z); // Inclinação lateral (Z)
-    float currentRotationY = Mathf.Abs(transform.eulerAngles.y); // Rotação no eixo Y
-    float currentVerticalTilt = Mathf.Abs(transform.eulerAngles.x); // Inclinação frontal/traseira (pitch)
+        // Obtém os ângulos atuais de inclinação e rotação
+        float currentTiltX = Mathf.Abs(transform.eulerAngles.x); // Inclinação lateral (X)
+        float currentTiltZ = Mathf.Abs(transform.eulerAngles.z); // Inclinação lateral (Z)
+        float currentRotationY = Mathf.Abs(transform.eulerAngles.y); // Rotação no eixo Y
+        float currentVerticalTilt = Mathf.Abs(transform.eulerAngles.x); // Inclinação frontal/traseira (pitch)
 
-    // Corrige ângulos acima de 180° para evitar problemas
-    if (currentTiltX > 180) currentTiltX = 360 - currentTiltX;
-    if (currentTiltZ > 180) currentTiltZ = 360 - currentTiltZ;
-    if (currentRotationY > 180) currentRotationY = 360 - currentRotationY;
-    if (currentVerticalTilt > 180) currentVerticalTilt = 360 - currentVerticalTilt;
+        // Corrige ângulos acima de 180° para evitar problemas
+        if (currentTiltX > 180) currentTiltX = 360 - currentTiltX;
+        if (currentTiltZ > 180) currentTiltZ = 360 - currentTiltZ;
+        if (currentRotationY > 180) currentRotationY = 360 - currentRotationY;
+        if (currentVerticalTilt > 180) currentVerticalTilt = 360 - currentVerticalTilt;
 
         c1 = collisionForce >= impactThreshold;
-        c2 = !collider is CapsuleCollider;
-        c3 = !isGround && (currentTiltX > maxTiltAngle || currentTiltZ > maxTiltAngle || currentRotationY > maxRotationAngle || currentVerticalTilt > maxVerticalTilt);
-    // Verifica se a moto aterrissou com inclinação, rotação ou pitch excessivo
-     if (c1 || (c3 && onFreeStyle) || (onFreeStyle && isGround && c1))
-    {
-        animatioFall = true;
-        bkController.crashed = true;
-        isImpactAboveThreshold = true;
+        c2 = onFreeStyle && isGround && c1;
+        c3 = !isGround && onFreeStyle && (currentTiltX > maxTiltAngle || currentTiltZ > maxTiltAngle || currentRotationY > maxRotationAngle || currentVerticalTilt > maxVerticalTilt);
+        // Verifica se a moto aterrissou com inclinação, rotação ou pitch excessivo
+        if (c1 || c3 || c2)
+        {
+            animatioFall = true;
+            bkController.crashed = true;
+            isImpactAboveThreshold = true;
+        }
     }
-}
     public bool c1;
     public bool c2;
     public bool c3;
-   
+
     private string GetCurrentAnimationName(AnimatorStateInfo stateInfo)
     {
         foreach (string animationName in animationClipName)
